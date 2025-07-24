@@ -1,19 +1,3 @@
-const alphabetEn =
-  'сСsS' +
-  'фФfF' +
-  'хХhH' +
-  'кКkK' +
-  'лЛlL' +
-  'мМmM' +
-  'нНnN' +
-  'оОoO' +
-  'пПpP' +
-  'рРrR' +
-  'сСsS' +
-  'тТtT' +
-  'уУuU' +
-  'ыЫyY'
-
 const replaceEn = [
   ['а', 'a'],
   ['А', 'A'],
@@ -82,8 +66,13 @@ export const translate = (ruText: string, notation: 'EN' | 'DE'): string => {
   for (let i = 0; i < ruText.length; i++) {
     const t = ruText[i]
 
-    if (t === 'ы' && i + 1 < ruText.length) {
+    if ((t === 'ы' || t === 'и') && i + 1 < ruText.length) {
       const w = ruText[i + 1]
+
+      if (t === 'и' && w === 'й') {
+        result += 'y'
+        continue
+      }
 
       if (w === 'и' || w === 'й') {
         result += 'y'
@@ -101,5 +90,8 @@ export const translate = (ruText: string, notation: 'EN' | 'DE'): string => {
     }
   }
 
-  return result
+  result = result.replace('yy', 'y')
+  result = result.replace('yy', 'y')
+
+  return result.replace('yy', '')
 }
