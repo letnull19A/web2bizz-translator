@@ -2,14 +2,44 @@
   "name": "libs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "@types",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc",
+    "build:clear": "npm run clear:all && npm run build",
+    "clear:all": "npm run clear:types && npm run clear:dist",
+    "clear:types": "rm -rf ./@types",
+    "clear:dist": "rm -rf ./dist",
+    "test": "jest",
+    "clear:jest": "jest --clearCache",
+    "run:example": "npx ts-node ./src/example/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.0",
+    "ts-loader": "^9.5.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.(ts|js)$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }
