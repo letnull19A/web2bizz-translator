@@ -78,11 +78,6 @@ export const translate = (ruText: string, notation: 'EN' | 'DE'): string => {
         result += 'y'
         continue
       }
-
-      if (w === 'и' || w === 'й') {
-        result += 'y'
-        continue
-      }
     }
 
     for (let j = 0; j < replaceEn.length; j++) {
@@ -94,9 +89,6 @@ export const translate = (ruText: string, notation: 'EN' | 'DE'): string => {
       }
     }
   }
-
-  result = result.replace('yy', 'y')
-  result = result.replace('yy', 'y')
 
   return result.replace('yy', '')
 }
