@@ -66,8 +66,13 @@ export const translate = (ruText: string, notation: 'EN' | 'DE'): string => {
   for (let i = 0; i < ruText.length; i++) {
     const t = ruText[i]
 
-    if ((t === 'ы' || t === 'и') && i + 1 < ruText.length) {
+    if ((t === 'ы' || t === 'и' || t === 'о') && i + 1 < ruText.length) {
       const w = ruText[i + 1]
+
+      if (t === 'о' && w === 'й') {
+        result += 'oy'
+        continue
+      }
 
       if (t === 'и' && w === 'й') {
         result += 'y'
